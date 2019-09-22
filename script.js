@@ -18,7 +18,7 @@ var angle=0;
 
 
 const startBtn = {
-    x : 440,
+    x : canvas.width*6/13,
     y : 263,
     w : 83,
     h : 29
@@ -28,6 +28,7 @@ canvas.addEventListener("click", function(evt){
             let rect = canvas.getBoundingClientRect();
             let clickX = evt.clientX - rect.left;
             let clickY = evt.clientY - rect.top;
+            console.log(clickX,startBtn.x,"   ",startBtn.x + startBtn.w, canvas.width*6/13)
             // CHECK IF WE CLICK ON THE START BUTTON
             if(clickX >= startBtn.x && clickX <= startBtn.x + startBtn.w && clickY >= startBtn.y && clickY <= startBtn.y + startBtn.h){
                 document.location.reload(true);
