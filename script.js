@@ -9,7 +9,7 @@ sprite.src = "img/sprite.png";
 sprite.height= 300;
 sprite.width = 200;
 
-
+console.log(canvas.className.split(" "))
 const gravity=0.4;
 var flapping = false;
 var flapValue= -8;
@@ -28,12 +28,21 @@ canvas.addEventListener("click", function(evt){
             let rect = canvas.getBoundingClientRect();
             let clickX = evt.clientX - rect.left;
             let clickY = evt.clientY - rect.top;
-            console.log(clickX,startBtn.x,"   ",startBtn.x + startBtn.w, canvas.width*6/13)
             // CHECK IF WE CLICK ON THE START BUTTON
             if(clickX >= startBtn.x && clickX <= startBtn.x + startBtn.w && clickY >= startBtn.y && clickY <= startBtn.y + startBtn.h){
                 document.location.reload(true);
             }
 });
+
+canvas.addEventListener("click",function(){
+	flapping= true;
+				console.log(angle);
+				if ( angle>=0.45){
+					angle+= 10* DEGREE;
+				}else{
+				angle += 38 * DEGREE;
+				}
+})
 
 
 const gameOver = {
@@ -114,7 +123,7 @@ function Bird(){
 			if(e.keyCode == 32){
 				flapping= true;
 				console.log(angle);
-				if ( angle>=0.45){
+				if ( angle>=0.1){
 					angle+= 10* DEGREE;
 				}else{
 				angle += 38 * DEGREE;
@@ -200,8 +209,11 @@ function Bird(){
 		this.keyPress();
 		this.incrementFrame(this.frame);
 
-
+		if (angle<-0.2){
+		angle -= 0.5 *DEGREE;
+		}else{
 		angle-= DEGREE;
+		}
 		this.y+=this.dy;
 		this.draw();
 	}
